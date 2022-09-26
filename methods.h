@@ -210,11 +210,34 @@ bool imprimir_con_colores(Node* head_palabra_usuario)
     cout << "\n";
     if(contador_verdes == contador_nodos)
     {
+        cout << "\n";
         cout << "   ¡Ganaste el juegooo!" << endl;
+        cout << "\n";
         return true;
     }
     else return false;
 
+}
+
+void rojo(Node* head)
+{
+    Node* temporal = head;
+
+    while(temporal != NULL)
+    {
+        temporal->color = "rojo";
+        temporal = temporal->next;
+    }
+
+    temporal = head;
+
+    while(temporal != NULL)
+    {
+        string rojo("\033[0;31m");
+        string reset("\033[0m");
+        cout << rojo << temporal->letra << reset;
+        temporal = temporal->next;
+    }
 }
 
 void reset(Node* head)
