@@ -17,6 +17,7 @@ int main()
     {
 
         bool ganar;
+        int contador_perdidas = 0;
 
         while(variable_entrada != 0)
         {
@@ -25,6 +26,12 @@ int main()
             
             // se genera una palabra con la función palabra_aleatoria() para dar inicio al juego
             string palabra_computador = palabra_aleatoria();
+            
+
+            // si se quiere editar la palabra para efecto de un test, hacerlo aquí:
+            // string palabra_computador = "GATO";
+            
+            
             cout << "\nTu palabra tiene " << palabra_computador.length() << " letras, ¡Buen juego!" << endl;
             
             // la función palabra_a_lista retorna un nodo puntero, por lo tanto lo guardamos en otro nodo puntero
@@ -64,11 +71,21 @@ int main()
 
                 reset(head_palabra_usuario);
 
+                if(ganar == false) 
+                {
+                    contador_perdidas++;
+                    if(contador_perdidas > 5)
+                    {
+                        cout << "\n    Perdiste :(" << endl;
+                        cout << "La palabra era: ";
+                        rojo(head_palabra_computador);
+                        reset(head_palabra_computador);
+                        cout<< "" << endl;
+                        cout<< "" << endl;
+                    }
+                }
+            
             }
-
-            if(ganar == false) cout << "\n    Perdiste :(" << endl;
-            cout << "\nLa palabra era: " << palabra_computador << endl;
-
 
         cout <<"¿Desea seguir jugando? (sí = 1/no = 0): "; cin >> variable_entrada;
 
@@ -79,4 +96,5 @@ int main()
     }
 
     return 0;
+    
 }
