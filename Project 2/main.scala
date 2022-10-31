@@ -28,10 +28,10 @@ object Methods
   }
 
 
-  def eval(root: Tree[Char]): Int =
+  def eval(root: Tree[Char]): Double =
   {
 
-    def go(node: Tree[Char]): Int = node match
+    def go(node: Tree[Char]): Double = node match
     {
 
       case Branch(value, left, right) =>
