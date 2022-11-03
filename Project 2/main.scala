@@ -1,4 +1,5 @@
 import scala.io.StdIn.readLine
+import scala.math._
 
 sealed trait Tree[+A]
 case object Nil extends Tree[Nothing]
@@ -12,15 +13,51 @@ object Methods
  def add(main_string: String): Tuple2[Tree[Char], String] =
   {
 
-    def go(string: String): Tuple2[Tree[Char], String] =
+    def go(string: String): Tuple2[Tree[Char], String] = string.charAt(0) match
     {
-      if (string.charAt(0).equals('+') || string.charAt(0).equals('-') || string.charAt(0).equals('*') || string.charAt(0).equals('/'))
+      case '+' =>
       {
         val left = add(string.substring(1))
         val right = add(left._2)
-        return (Branch(string.charAt(0), left._1, right._1), right._2)
+        (Branch(string.charAt(0), left._1, right._1), right._2)
       }
-      else return (Leaf(string.charAt(0)), string.substring(1))
+      case '-' =>
+      {
+        val left = add(string.substring(1))
+        val right = add(left._2)
+        (Branch(string.charAt(0), left._1, right._1), right._2)
+      }
+      case '*' =>
+      {
+        val left = add(string.substring(1))
+        val right = add(left._2)
+        (Branch(string.charAt(0), left._1, right._1), right._2)
+      }
+      case '/' =>
+      {
+        val left = add(string.substring(1))
+        val right = add(left._2)
+        (Branch(string.charAt(0), left._1, right._1), right._2)
+      }
+      case '@' =>
+      {
+        val left = add(string.substring(1))
+        val right = add(left._2)
+        (Branch(string.charAt(0), left._1, right._1), right._2)
+      }
+      case '#' =>
+      {
+        val left = add(string.substring(1))
+        val right = add(left._2)
+        (Branch(string.charAt(0), left._1, right._1), right._2)
+      }
+      case '2' if ((string.length() > 2) && !string.charAt(1).equals('+') && !string.charAt(1).equals('-') && !string.charAt(1).equals('*') && !string.charAt(1).equals('/') && !string.charAt(1).equals('@') && !string.charAt(2).equals('+') && !string.charAt(2).equals('-') && !string.charAt(2).equals('*') && !string.charAt(2).equals('/') && !string.charAt(2).equals('@')) =>
+      {
+        val left = add(string.substring(1))
+        val right = add(left._2)
+        (Branch(string.charAt(0), left._1, right._1), right._2)
+      }
+      case _ => (Leaf(string.charAt(0)), string.substring(1))
     }
 
     go(main_string)
@@ -36,33 +73,25 @@ object Methods
 
       case Branch(value, left, right) =>
       {
-        if (value.equals('+'))
+
+        val left_value = eval(left)
+        val right_value = eval(right)
+        
+        value match
         {
-          val left_value = eval(left)
-          val right_value = eval(right)
-          return (left_value + right_value)
+            case '+' => left_value + right_value
+            case '-' => left_value - right_value
+            case '*' => left_value * right_value
+            case '/' => left_value / right_value
+            case '@' => pow(left_value, right_value)
+            case '#' =>
+            {
+              if (left_value > right_value) left_value + right_value
+              else left_value - right_value
+            }
+            case '2' => left_value / right_value
         }
-  
-        if (value.equals('-'))
-        {
-          val left_value = eval(left)
-          val right_value = eval(right)
-          return (left_value - right_value)
-        }
-  
-        if (value.equals('*'))
-        {
-          val left_value = eval(left)
-          val right_value = eval(right)
-          return (left_value * right_value)
-        }
-  
-        else
-        {
-          val left_value = eval(left)
-          val right_value = eval(right)
-          return (left_value / right_value)
-        }
+
       }
   
       case Leaf(value) => 
@@ -97,12 +126,23 @@ object Main
     print(Methods.eval(root._1))
     
     print('\n')
-    print("Now write your problem: ")
+    print("Now write your problem (prefix or postfix): ")
 
-    val user = readLine()
+    val user = "+45223" // readLine()
+    print(user)
     val users_root = Methods.add(user)
+    print('\n')
     print("The result is -> ")
     print(Methods.eval(users_root._1))
+    print('\n')
+
+    print("Now write your problem (prefix or postfix): ")
+    val user_new = "#45" // readLine()
+    print(user_new)
+    print('\n')
+    val users__new_root = Methods.add(user_new)
+    print("The result is -> ")
+    print(Methods.eval(users__new_root._1))
     print('\n')
     
   }
