@@ -1,4 +1,4 @@
-# Programming Languajes
+# Programming Lenguajes
 This was a course I took in 2022-2 where I learned so much about programming paragims and the various types of languajes we have.
 The firts part was an introduccion to assemblers and how they were helpful to make a path between people and computers. Then we learned how imperative languajes works, in this case using C++ (Project 1), and almost at the end we use functional programming in Scala to develop a program to solve prefix notation (Project 2).
 
