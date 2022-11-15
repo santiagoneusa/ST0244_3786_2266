@@ -42,7 +42,7 @@ To understand the operation of a NER i used:
 - The request program https://youtu.be/gsj-qqEfkCk
 
 2. Named Entity recognition:
-https://youtu.be/1ePkOSGoIFI
-https://youtu.be/9mXoGxAn6pM
-https://github.com/dreji18/NER-Training-Spacy-3.0/blob/main/NER%20Training%20with%20Spacy%20v3%20Notebook.ipynb
-https://spacy.io/usage/training#config
+- https://youtu.be/1ePkOSGoIFI
+- https://youtu.be/9mXoGxAn6pM
+- https://github.com/dreji18/NER-Training-Spacy-3.0/blob/main/NER%20Training%20with%20Spacy%20v3%20Notebook.ipynb
+- https://spacy.io/usage/training#config
